@@ -47,6 +47,91 @@
                             </p>
 
                             <div id="date-countdown2" class="pb-1"></div>
+                            <h4>Les parcours du joueur</h4>
+                            <div class="col-lg-12">
+
+                                <div class="widget-next-match">
+
+                                    <table class="table custom-table">
+                                        <tbody>
+                                            <tr>
+                                                <th>P</th>
+                                                <th>Equipe</th>
+                                                <th>Date debut</th>
+                                                <th>Date fin</th>
+                                                <th>L</th>
+                                                <th>PTS</th>
+                                            </tr>
+                                        </tbody>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td><strong class="text-white">Football League</strong></td>
+                                                <td>22</td>
+                                                <td>3</td>
+                                                <td>2</td>
+                                                <td>140</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td><strong class="text-white">Soccer</strong></td>
+                                                <td>22</td>
+                                                <td>3</td>
+                                                <td>2</td>
+                                                <td>140</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td><strong class="text-white">Juvendo</strong></td>
+                                                <td>22</td>
+                                                <td>3</td>
+                                                <td>2</td>
+                                                <td>140</td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td><strong class="text-white">French Football League</strong></td>
+                                                <td>22</td>
+                                                <td>3</td>
+                                                <td>2</td>
+                                                <td>140</td>
+                                            </tr>
+                                            <tr>
+                                                <td>5</td>
+                                                <td><strong class="text-white">Legia Abante</strong></td>
+                                                <td>22</td>
+                                                <td>3</td>
+                                                <td>2</td>
+                                                <td>140</td>
+                                            </tr>
+                                            <tr>
+                                                <td>6</td>
+                                                <td><strong class="text-white">Gliwice League</strong></td>
+                                                <td>22</td>
+                                                <td>3</td>
+                                                <td>2</td>
+                                                <td>140</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7</td>
+                                                <td><strong class="text-white">Cornika</strong></td>
+                                                <td>22</td>
+                                                <td>3</td>
+                                                <td>2</td>
+                                                <td>140</td>
+                                            </tr>
+                                            <tr>
+                                                <td>8</td>
+                                                <td><strong class="text-white">Gravity Smash</strong></td>
+                                                <td>22</td>
+                                                <td>3</td>
+                                                <td>2</td>
+                                                <td>140</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

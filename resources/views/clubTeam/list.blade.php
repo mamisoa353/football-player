@@ -31,6 +31,7 @@
                                     <th>D</th>
                                     <th>L</th>
                                     <th>PTS</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -42,9 +43,11 @@
                                     <td>2</td>
                                     <td>140</td>
                                     <td>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal"
-                                            data-target="#popupModal" data-placement="left">
-                                            Ouvrir le pop-up
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="popover"
+                                            title="Titre du Popover" data-bs-content="Contenu du Popover"
+                                            data-bs-placement="left" onclick="initPopover()">
+                                            {{-- Popover à gauche --}}
+                                            <i class="bi bi-three-dots-vertical"></i>
                                         </button>
                                     </td>
                                 </tr>
@@ -136,6 +139,18 @@
 
     @section('script')
         <script>
+            function popover() {
+                var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+                var popoverList = popoverTriggerList.map(function(popoverTriggerEl) {
+                    return new bootstrap.Popover(popoverTriggerEl)
+                });
+            }
+
+            function initPopover() {
+                popover(); // Appeler la fonction popover lorsque le bouton est cliqué
+            }
+
+
             document.querySelector('a[href="#listeClubs"]').addEventListener('click', function(e) {
                 e.preventDefault(); // Pour éviter que le lien n'ouvre l'URL directement
                 document.querySelector('#listeClubs').scrollIntoView({

@@ -20,12 +20,20 @@
 
 <link rel="stylesheet" href="{{ asset('assets/css/bootstrap/bootstrap.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/jquery-ui.css') }}">
+{{-- <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}"> --}}
+{{-- <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-icons.css') }}"> --}}
 <link rel="stylesheet" href="{{ asset('assets/css/owl.carousel.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/owl.theme.default.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/owl.theme.default.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/jquery.fancybox.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-datepicker.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/fonts/flaticon/font/flaticon.css') }}">
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+
 
 <link rel="stylesheet" href="{{ asset('assets/css/aos.css') }}">
 
