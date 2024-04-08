@@ -4,17 +4,18 @@
         <div class="d-flex align-items-center">
             <div class="site-logo">
                 <a href="index.html">
-                    <img src="{{ asset('assets/images/logo.png') }}" alt="Logo">
+                    Joueur-BigDev
+                    {{-- <img src="{{ asset('assets/images/logo.png') }}" alt="Logo"> --}}
                 </a>
             </div>
             <div class="ml-auto">
                 <nav class="site-navigation position-relative text-right" role="navigation">
                     <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                        <li class="active"><a href="index.html" class="nav-link">Home</a></li>
-                        <li><a href="#" class="nav-link">Matches</a></li>
-                        <li><a href="#" class="nav-link">Players</a></li>
-                        <li><a href="#" class="nav-link">Blog</a></li>
-                        <li><a href="#" class="nav-link">Contact</a></li>
+                        <li class="active"><a href="/home" class="nav-link">Acceuil</a></li>
+                        <li><a href="/club" class="nav-link">Clubs</a></li>
+                        <li><a href="#" class="nav-link">Equipes Nationales</a></li>
+                        <li><a href="/player" class="nav-link">Joueurs</a></li>
+                        {{-- <li><a href="#" class="nav-link">Contact</a></li> --}}
                     </ul>
                 </nav>
 

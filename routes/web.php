@@ -22,8 +22,9 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return view('home');
 });
-
-
-
-
-
+Route::get('/club', function () {
+    return view('clubTeam.list');
+});
+Route::get('/player', function () {
+    return view('player.detail');
+});

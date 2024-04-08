@@ -17,6 +17,7 @@
 
 <footer>
     <!-- Vendor JS Files -->
+    @yield('script')
     <script src="{{ asset('assets/js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery-migrate-3.0.1.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery-ui.js') }}"></script>
