@@ -20,18 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/email', function () {
-    return view('emails');
-});
 
-Auth::routes();
-Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
-
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/liste-produit', [App\Http\Controllers\HomeController::class, 'listProduit']);
-Route::get('/commande-produit-{id}', [App\Http\Controllers\HomeController::class, 'commandeProduit'])->where(['id' => '(\d+)']);
-Route::POST('/Search-product', [ProduitController::class, 'RechercheProduit']);
 
 
 
