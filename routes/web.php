@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\NationaliteController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -27,3 +27,4 @@ Route::get('/club', function () {
 Route::get('/player', function () {
     return view('player.detail');
 });
+Route::auto('/nationalite', NationaliteController::class);
