@@ -41,8 +41,13 @@
                             <p class="mb-5 ">
                                 <span class="d-block">Age : 32 ans</span>
                                 <span class="d-block">Taille : 174 cm</span>
-                                <span class="d-block">Nationalité : Argentine </span>
-                                <span class="d-block">Equipe nationale : Argentine </span>
+                                <span class="d-block">Nationalité : Argentine
+                                    <img src="{{ asset('/assets/logo/Nationalite/ar.svg') }}" class="rounded-circle mr-3"
+                                        width="15" height="15"> </span>
+                                <span class="d-block">Equipe nationale : Argentine
+                                    <img src="{{ asset('/assets/logo/Nationalite/ar.svg') }}" class="rounded-circle mr-3"
+                                        width="15" height="15">
+                                </span>
                                 <span class="d-block">Club actuel : Inter Miami </span>
                             </p>
 
