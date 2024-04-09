@@ -198,8 +198,8 @@
                 <div class="modal-body">
                     <form action="/joueur/liste" method="GET"class="row g-3">
                         <div class="col-md-6">
-                            <label for="inputEmail8" class="form-label">IdClubTeam</label>
-                            <select id="inputState" name='idclubteam' class="form-control">\n"
+                            <label for="inputEmail8" class="form-label">Club Team</label>
+                            <select id="inputState" name='idclubteam' class="form-control bg-dark">\n"
                                 <option></option>
                                 @foreach ($clubTeam as $row)
                                     <option value='<?php echo $row->id; ?>'><?php echo $row->nom; ?></option>
@@ -207,12 +207,28 @@
                             </select>
                         </div>
                         <div class="col-md-6">
-                            <label for="inputEmail9" class="form-label">IdNationalTeam</label>
-                            <select id="inputState" name='idnationalteam' class="form-control">\n"
+                            <label for="inputEmail9" class="form-label">National Team</label>
+                            <select id="inputState" name='idnationalteam' class="form-control bg-dark">\n"
                                 <option></option>
                                 @foreach ($nationalTeam as $row)
                                     <option value='<?php echo $row->id; ?>'><?php echo $row->nom; ?></option>
                                 @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputEmail9" class="form-label">Trier par</label>
+                            <select id="inputState" name='tri' class="form-control bg-dark">\n"
+                                <option></option>
+                                <option value="nom">Nom</option>
+                                <option value="nbbuts">Nombre des buts</option>
+                                <option value="parcours_count">Nombre des parcours</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputEmail9" class="form-label"> Type </label>
+                            <select id="inputState" name='type' class="form-control bg-dark">\n"
+                                <option value="asc">Croissant</option>
+                                <option value="desc">Decroissant</option>
                             </select>
                         </div>
                 </div>

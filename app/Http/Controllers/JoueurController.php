@@ -16,12 +16,22 @@ class JoueurController extends Controller
     public function liste(Request $request)
     {
         $all = Joueur::query();
+        $all->withCount('parcours');
         if ($request->filled('idclubteam')) {
             $all->where('idclubteam', '=', $request['idclubteam']);
         }
         if ($request->filled('idnationalteam')) {
             $all->where('idnationalteam', '=', $request['idnationalteam']);
         }
+        if ($request->filled('tri')) {
+            if ($request['type'] == "asc") {
+                $all->orderBy($request['tri']);
+            } else {
+                $all->orderByDesc($request['tri']);
+            }
+        }
+
+
         $all = $all->paginate(10);
         // $all = Joueur::paginate(10);
 
