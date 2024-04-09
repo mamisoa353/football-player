@@ -36,5 +36,6 @@ Route::auto('/ligue', LigueController::class);
 Route::auto('/joueur', JoueurController::class);
 Route::auto('/clubteam', ClubTeamController::class);
 Route::auto('/nationalteam', NationalTeamController::class);
-
-Route::get('/joueur/{id}', [JoueurController::class, 'datails']);
+Route::get('/joueur/{id}', [JoueurController::class, 'details']);
+Route::get('/joueur/page/{id}', [JoueurController::class, 'detailJoueurPage']);
+Route::auto('/parcours', ParcoursController::class);

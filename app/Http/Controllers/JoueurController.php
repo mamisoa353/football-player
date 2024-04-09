@@ -95,10 +95,13 @@ class JoueurController extends Controller
 
         return redirect('/joueur/liste');
     }
+
     public function details($id)
     {
         // $data = Joueur::find($id);
-        $data = Joueur::with(['clubTeam', 'nationalTeam', 'nationalite'])->find($id);
+        $data = Joueur::with(['parcours' => function ($query) {
+            $query->orderBy('datedebut', 'desc')->with('clubTeam');
+        }, 'clubTeam', 'nationalTeam', 'nationalite'])->find($id);
 
         return response()->json(
             [
@@ -106,5 +109,17 @@ class JoueurController extends Controller
             ]
 
         );
+    }
+
+    public function detailJoueurPage($id)
+    {
+        // $data = Joueur::find($id);
+        $data = Joueur::with(['parcours' => function ($query) {
+            $query->orderBy('datedebut', 'desc')->with('clubTeam');
+        }, 'clubTeam', 'nationalTeam', 'nationalite'])->find($id);
+
+        return view('joueur.fiche', [
+            'joueur' => $data,
+        ]);
     }
 }

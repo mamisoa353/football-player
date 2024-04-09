@@ -10,13 +10,13 @@
                     <tr>
                         <th>Profil</th>
                         <th>Nom</th>
-                        <th>Prenom</th>
                         <th>Age</th>
                         <th>Taille</th>
                         <th>NbButs</th>
-                        <th>IdNationalite</th>
-                        <th>IdClubTeam</th>
-                        <th>IdNationalTeam</th>
+                        {{-- <th>IdNationalite</th> --}}
+                        <th>Club</th>
+                        <th>Equipe nationale</th>
+                        <th>Nombre des parcours</th>
 
                     </tr>
                     @foreach ($liste as $row)
@@ -25,21 +25,18 @@
                                 <img src="{{ asset('/assets/logo/Other/' . $row->profil . '.png') }}"
                                     class="rounded-circle mr-3" width="50" height="50">
                             </td>
-                            <td><?php echo $row->nom; ?></td>
-                            <td><?php echo $row->prenom; ?></td>
-                            <td><?php echo $row->age; ?> ans</td>
-                            <td><?php echo $row->taille; ?> cm</td>
-                            <td><?php echo $row->nbbuts; ?></td>
-                            <td><?= \App\Models\Nationalite::find($row->idnationalite)->designation ?></td>
-                            <td><?= \App\Models\ClubTeam::find($row->idclubteam)->nom ?></td>
-                            <td><?= \App\Models\NationalTeam::find($row->idnationalteam)->nom ?></td>
+                            <td>{{ $row->nom . ' ' . $row->prenom }} </td>
+                            <td>{{ $row->age }} ans</td>
+                            <td>{{ $row->taille }} cm</td>
+                            <td>{{ $row->nbbuts }}</td>
+                            <td>{{ $row->clubteam->nom }}</td>
+                            <td>{{ $row->nationalteam->nom }}</td>
+                            <td>{{ count($row->parcours) }}</td>
                             <td>
                                 <button type="button" class="btn btn-primary"
                                     onclick="chargerModalAvecAjax(<?= $row->id ?>)">
-                                    Ouvrir le modal avec Ajax
+                                    Information
                                 </button>
-
-
                                 {{-- <a href="">
                                     <i class="bi bi-eye"></i>
                                 </a> --}}
@@ -130,13 +127,11 @@
                                             <button type="submit" class="btn btn-primary">Save changes</button>
                                         </div>
                                         </form>
-
                                     </div>
                                     </td>
                                     {{-- <td>
                                         <button type="button" class="btn btn-danger mb-2" data-bs-toggle="modal"
                                             data-bs-target="#bbasicModal<?php echo $row->id; ?>">Supprimer</button>
-
                                     </td> --}}
                                     <div class="modal fade" id="bbasicModal<?php echo $row->id; ?>">
                                         <div class="modal-dialog  modal-md" role="document">
@@ -145,9 +140,6 @@
                                                     <h5 class="modal-title">Suppression</h5>
                                                 </div>
                                                 <div class="modal-body">
-
-
-
                                                     <form action="supprimer" method="GET"class="row g-3">
                                                         <p style='font-size:28px'>Confirmation de la suppression!</p>
                                                         <input type="hidden" class="form-control" name='id'
@@ -159,20 +151,16 @@
                                                     <button type="submit" class="btn btn-danger">Supprimer</button>
                                                 </div>
                                                 </form>
-
                                             </div>
                                             </td>
                         </tr>
                     @endforeach
                 </table>
-
                 {{ $liste->links() }}
-
             </div>
-
         </div>
-    </div>
 
+    </div>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -201,11 +189,39 @@
             });
         }
 
+        function parcoursHtml(parcours) {
+            tbody = ``;
+            parcours.forEach(function(parcour) {
+                tbody += `<tr>
+                                                <td><strong class="text-white">` + parcour.club_team.nom + `</strong></td>
+                                                <td>` + parcour.datedebut + `</td>
+                                                <td>` + (parcour.datefin ? parcour.datefin : 'En cours') + `</td>
+                                            </tr>`
+            });
+
+            return `<table class="table custom-table">
+                                        <tbody>
+                                            <tr>
+                                                <th>Equipe</th>
+                                                <th>Date debut</th>
+                                                <th>Date fin</th>
+                                            </tr>
+                                        </tbody>
+                                        <tbody>
+                                            ` + tbody + `
+                            </tbody>
+        </table>`
+        }
+
         function getHtml(content) {
             return `
             <div class="widget-next-match">
                         <div class="widget-title">
-                            <h3>Détails du joueur</h3>
+                            <h3>Détails du joueur
+                                <i class="bi bi-pencil-square"></i>
+                                <a href="/joueur/page/1">
+                                 </a>
+                                </h3>
                         </div>
                         <div class="widget-body mb-3">
                             <div class="widget-vs">
@@ -240,86 +256,7 @@
                             <h4>Les parcours du joueur</h4>
                             <div class="col-lg-12">
 
-                                <div class="widget-next-match">
-
-                                    <table class="table custom-table">
-                                        <tbody>
-                                            <tr>
-                                                <th>P</th>
-                                                <th>Equipe</th>
-                                                <th>Date debut</th>
-                                                <th>Date fin</th>
-                                                <th>L</th>
-                                                <th>PTS</th>
-                                            </tr>
-                                        </tbody>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td><strong class="text-white">Football League</strong></td>
-                                                <td>22</td>
-                                                <td>3</td>
-                                                <td>2</td>
-                                                <td>140</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td><strong class="text-white">Soccer</strong></td>
-                                                <td>22</td>
-                                                <td>3</td>
-                                                <td>2</td>
-                                                <td>140</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td><strong class="text-white">Juvendo</strong></td>
-                                                <td>22</td>
-                                                <td>3</td>
-                                                <td>2</td>
-                                                <td>140</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td><strong class="text-white">French Football League</strong></td>
-                                                <td>22</td>
-                                                <td>3</td>
-                                                <td>2</td>
-                                                <td>140</td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td><strong class="text-white">Legia Abante</strong></td>
-                                                <td>22</td>
-                                                <td>3</td>
-                                                <td>2</td>
-                                                <td>140</td>
-                                            </tr>
-                                            <tr>
-                                                <td>6</td>
-                                                <td><strong class="text-white">Gliwice League</strong></td>
-                                                <td>22</td>
-                                                <td>3</td>
-                                                <td>2</td>
-                                                <td>140</td>
-                                            </tr>
-                                            <tr>
-                                                <td>7</td>
-                                                <td><strong class="text-white">Cornika</strong></td>
-                                                <td>22</td>
-                                                <td>3</td>
-                                                <td>2</td>
-                                                <td>140</td>
-                                            </tr>
-                                            <tr>
-                                                <td>8</td>
-                                                <td><strong class="text-white">Gravity Smash</strong></td>
-                                                <td>22</td>
-                                                <td>3</td>
-                                                <td>2</td>
-                                                <td>140</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                <div class="widget-next-match">` + parcoursHtml(content.parcours) + `
                                 </div>
                             </div>
                         </div>

@@ -36,4 +36,8 @@ class Joueur extends Model
     {
         return $this->belongsTo(NationalTeam::class, 'idnationalteam');
     }
+    public function parcours()
+    {
+        return $this->hasMany(Parcours::class, 'idjoueur');
+    }
 }
