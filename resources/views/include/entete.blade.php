@@ -4,7 +4,7 @@
         <div class="d-flex align-items-center">
             <div class="site-logo">
                 <a href="index.html">
-                    Joueur-BigDev
+                    TeamPlayer
                     {{-- <img src="{{ asset('assets/images/logo.png') }}" alt="Logo"> --}}
                 </a>
             </div>

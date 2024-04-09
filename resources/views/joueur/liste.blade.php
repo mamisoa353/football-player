@@ -8,11 +8,11 @@
             <div class="table-responsive pt-3">
                 <table class="table table-striped" border="1">
                     <tr>
+                        <th>Profil</th>
                         <th>Nom</th>
                         <th>Prenom</th>
-                        <th>Dtn</th>
+                        <th>Age</th>
                         <th>Taille</th>
-                        <th>Profil</th>
                         <th>NbButs</th>
                         <th>IdNationalite</th>
                         <th>IdClubTeam</th>
@@ -21,17 +21,21 @@
                     </tr>
                     @foreach ($liste as $row)
                         <tr>
+                            <td>
+                                <img src="{{ asset('/assets/logo/Other/' . $row->profil . '.png') }}"
+                                    class="rounded-circle mr-3" width="50" height="50">
+                            </td>
                             <td><?php echo $row->nom; ?></td>
                             <td><?php echo $row->prenom; ?></td>
-                            <td><?php echo $row->dtn; ?></td>
-                            <td><?php echo $row->taille; ?></td>
-                            <td><?php echo $row->profil; ?></td>
+                            <td><?php echo $row->age; ?> ans</td>
+                            <td><?php echo $row->taille; ?> cm</td>
                             <td><?php echo $row->nbbuts; ?></td>
                             <td><?= \App\Models\Nationalite::find($row->idnationalite)->designation ?></td>
                             <td><?= \App\Models\ClubTeam::find($row->idclubteam)->nom ?></td>
                             <td><?= \App\Models\NationalTeam::find($row->idnationalteam)->nom ?></td>
                             <td>
-                                <button type="button" class="btn btn-primary" onclick="chargerModalAvecAjax(<?= $row->id ?>)">
+                                <button type="button" class="btn btn-primary"
+                                    onclick="chargerModalAvecAjax(<?= $row->id ?>)">
                                     Ouvrir le modal avec Ajax
                                 </button>
 
@@ -207,8 +211,8 @@
                             <div class="widget-vs">
                                 <div class="d-flex align-items-center justify-content-around justify-content-between w-100">
                                     <div class="team-1 text-center">
-                                        <img src="{{ asset('/assets/images/person_5.jpg') }}" alt="Image">
-                                        <h3>` + content.nom +' ' + content.prenom + `</h3>
+                                        <img src="{{ asset('/assets/logo/Other/`+content.profil +`.png') }}" alt="Image">
+                                        <h3>` + content.nom + ' ' + content.prenom + `</h3>
                                     </div>
                                 </div>
                             </div>
@@ -217,16 +221,19 @@
                         <div class="text-center widget-vs-contents mb-4">
                             <h4>À propos</h4>
                             <p class="mb-5 ">
-                                <span class="d-block">Age : 32 ans</span>
-                                <span class="d-block">Taille : 174 cm</span>
-                                <span class="d-block">Nationalité : Argentine
-                                    <img src="{{ asset('/assets/logo/Nationalite/ar.svg') }}" class="rounded-circle mr-3"
+                                <span class="d-block">Age : ` + content.age + ` ans</span>
+                                <span class="d-block">Taille : ` + content.taille + ` cm</span>
+                                <span class="d-block">Nationalité : ` + content.nationalite.designation + `
+                                    <img src="{{ asset('/assets/logo/Nationalite/`+content.nationalite.drapeau+`.svg') }}" class="rounded-circle mr-3"
                                         width="15" height="15"> </span>
-                                <span class="d-block">Equipe nationale : Argentine
-                                    <img src="{{ asset('/assets/logo/Nationalite/ar.svg') }}" class="rounded-circle mr-3"
+                                <span class="d-block">Equipe nationale : ` + content.national_team.nom + `
+                                    <img src="{{ asset('/assets/logo/Nationalite/`+content.national_team.profil+`.svg') }}" class="rounded-circle mr-3"
                                         width="15" height="15">
                                 </span>
-                                <span class="d-block">Club actuel : Inter Miami </span>
+                                <span class="d-block">Club actuel : ` + content.club_team.nom + `
+                                    <img src="{{ asset('/assets/logo/Other/`+content.club_team.profil+`.png') }}" class="rounded-circle mr-3"
+                                        width="15" height="15">
+                                    </span>
                             </p>
 
                             <div id="date-countdown2" class="pb-1"></div>

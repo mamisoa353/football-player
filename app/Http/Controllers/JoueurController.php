@@ -97,7 +97,9 @@ class JoueurController extends Controller
     }
     public function details($id)
     {
-        $data = Joueur::find($id);
+        // $data = Joueur::find($id);
+        $data = Joueur::with(['clubTeam', 'nationalTeam', 'nationalite'])->find($id);
+
         return response()->json(
             [
                 'joueur' => $data

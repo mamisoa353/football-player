@@ -42,3 +42,12 @@ CREATE TABLE Joueur(
     FOREIGN KEY (IdClubTeam) REFERENCES ClubTeam(id),
     FOREIGN KEY (IdNationalTeam) REFERENCES NationalTeam(id)
 );
+CREATE TABLE Parcours(
+    id serial PRIMARY KEY,
+    DateDebut Date,
+    DateFin Date,
+    IdClubTeam int,
+    IdJoueur int,
+    FOREIGN KEY (IdClubTeam) REFERENCES ClubTeam(id),
+    FOREIGN KEY (IdJoueur) REFERENCES Joueur(id)
+);
