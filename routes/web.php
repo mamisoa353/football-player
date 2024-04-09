@@ -18,9 +18,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
-
-
-
-
-
+Route::get('/home', function () {
+    return view('home');
+});
+Route::get('/club', function () {
+    return view('clubTeam.list');
+});
+Route::get('/player', function () {
+    return view('player.detail');
+});
