@@ -31,3 +31,17 @@ Route::get('/player', function () {
 Route::auto('/nationalite', NationaliteController::class);
 Route::auto('/clubteam',ClubTeamController::class);
 Route::auto('/clubteam',ClubTeamController::class);
+Route::auto('/ligue',LigueController::class);
+Route::auto('/ligue',LigueController::class);
+Route::auto('/ligue',LigueController::class);
+Route::auto('/ligue',LigueController::class);
+Route::auto('/ligue',LigueController::class);
+Route::auto('/ligue',LigueController::class);
+Route::auto('/ligue',LigueController::class);
+Route::auto('/ligue',LigueController::class);
+Route::auto('/ligue',LigueController::class);
+Route::auto('/clubteam',ClubTeamController::class);
+Route::auto('/clubteam',ClubTeamController::class);
+Route::auto('/nationalteam',NationalTeamController::class);
+Route::auto('/joueur',JoueurController::class);
+Route::auto('/joueur',JoueurController::class);

@@ -6,7 +6,7 @@
     <div class="col-lg-8">
         <div>
             <div class="card-body"><a href='liste'> <button class="btn btn-success">Liste</button></a>
-                <h5 class="card-title">Ajouter nouveau ClubTeam</h5>
+                <h5 class="card-title">Ajouter nouveau NationalTeam</h5>
 
 
  <form action="action_add" method="POST"class="row g-3">
@@ -24,9 +24,9 @@
                         <input type="text" class="form-control" placeholder='code'name='code' id="inputEmail3">
                     </div>
 <div class="col-md-6">
-   <label for="inputEmail4" class="form-label">IdLigue</label>
-                        <select id="inputState" name='idligue' class="form-control">\n" 
-@foreach($ligue as $row)
+   <label for="inputEmail4" class="form-label">IdNationalite</label>
+                        <select id="inputState" name='idnationalite' class="form-control">\n" 
+@foreach($nationalite as $row)
  <option value='<?php echo $row->id ?>' ><?php echo $row->designation ?></option>
  
 

@@ -4,14 +4,14 @@
         
         <div class="card-body"><a href='add'> <button class="btn btn-success">Ajouter nouveau</button></a>
 
-            <h3>Liste ClubTeam</h3>
+            <h3>Liste NationalTeam</h3>
             <div class="table-responsive pt-3">
                 <table class="table table-striped" border="1">
 <tr>
 <th>Nom</th>
 <th>Profil</th>
 <th>Code</th>
-<th>IdLigue</th>
+<th>IdNationalite</th>
 
 </tr>
 
@@ -22,7 +22,7 @@
 <td><?php echo $row->nom; ?></td>
 <td><?php echo $row->profil; ?></td>
 <td><?php echo $row->code; ?></td>
-<td><?= \App\Models\Ligue::find($row->idligue)->designation?></td>
+<td><?= \App\Models\Nationalite::find($row->idnationalite)->designation?></td>
 <td>  
                         <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal"
                             data-bs-target="#basicModal<?php echo $row->id?>">Modif</button>
@@ -52,9 +52,9 @@
                         <input type="text" class="form-control" placeholder='code'name='code' value=<?=$row->code ?> >
                     </div>
 <div class="col-md-6">
-   <label for="inputEmail4" class="form-label">IdLigue</label>
-                        <select id="inputState" name='idligue' class="form-select">\n" 
-<?php foreach(\App\Models\Ligue::all() as $data)
+   <label for="inputEmail4" class="form-label">IdNationalite</label>
+                        <select id="inputState" name='idnationalite' class="form-select">\n" 
+<?php foreach(\App\Models\Nationalite::all() as $data)
 {?> <option value='<?php echo $data->id ?>' ><?php echo $data->designation ?></option>
  
 

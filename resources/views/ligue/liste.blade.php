@@ -4,14 +4,12 @@
         
         <div class="card-body"><a href='add'> <button class="btn btn-success">Ajouter nouveau</button></a>
 
-            <h3>Liste ClubTeam</h3>
+            <h3>Liste Ligue</h3>
             <div class="table-responsive pt-3">
                 <table class="table table-striped" border="1">
 <tr>
-<th>Nom</th>
-<th>Profil</th>
-<th>Code</th>
-<th>IdLigue</th>
+<th>Designation</th>
+<th>IdNationalite</th>
 
 </tr>
 
@@ -19,10 +17,8 @@
 
  @foreach($liste as $row)
 <tr>
-<td><?php echo $row->nom; ?></td>
-<td><?php echo $row->profil; ?></td>
-<td><?php echo $row->code; ?></td>
-<td><?= \App\Models\Ligue::find($row->idligue)->designation?></td>
+<td><?php echo $row->designation; ?></td>
+<td><?= \App\Models\Nationalite::find($row->idnationalite)->designation?></td>
 <td>  
                         <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal"
                             data-bs-target="#basicModal<?php echo $row->id?>">Modif</button>
@@ -40,26 +36,13 @@
 
  <form action="action_update" method="GET"class="row g-3">
 <div class="col-md-6">
-   <label for="inputEmail1" class="form-label">Nom</label>
-                        <input type="text" class="form-control" placeholder='nom'name='nom' value=<?=$row->nom ?> >
+   <label for="inputEmail1" class="form-label">Designation</label>
+                        <input type="text" class="form-control" placeholder='designation'name='designation' value=<?=$row->designation ?> >
                     </div>
 <div class="col-md-6">
-   <label for="inputEmail2" class="form-label">Profil</label>
-                        <input type="text" class="form-control" placeholder='profil'name='profil' value=<?=$row->profil ?> >
-                    </div>
-<div class="col-md-6">
-   <label for="inputEmail3" class="form-label">Code</label>
-                        <input type="text" class="form-control" placeholder='code'name='code' value=<?=$row->code ?> >
-                    </div>
-<div class="col-md-6">
-   <label for="inputEmail4" class="form-label">IdLigue</label>
-                        <select id="inputState" name='idligue' class="form-select">\n" 
-<?php foreach(\App\Models\Ligue::all() as $data)
-{?> <option value='<?php echo $data->id ?>' ><?php echo $data->designation ?></option>
- 
-
-<?php } ?>
-</select></div>
+   <label for="inputEmail2" class="form-label">idNationalite</label>
+                        <input type="number" placeholder='idnationalite'name='idnationalite'  value=<?=$row->idnationalite ?>  class="form-control" >
+                   </div> 
                         <input type="hidden" class="form-control" name='id' value='<?=$row->id  ?>'/>                    
               </div>  
                                         <div class="modal-footer">

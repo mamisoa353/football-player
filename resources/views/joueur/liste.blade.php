@@ -4,14 +4,19 @@
         
         <div class="card-body"><a href='add'> <button class="btn btn-success">Ajouter nouveau</button></a>
 
-            <h3>Liste ClubTeam</h3>
+            <h3>Liste Joueur</h3>
             <div class="table-responsive pt-3">
                 <table class="table table-striped" border="1">
 <tr>
 <th>Nom</th>
+<th>Prenom</th>
+<th>Dtn</th>
+<th>Taille</th>
 <th>Profil</th>
-<th>Code</th>
-<th>IdLigue</th>
+<th>NbButs</th>
+<th>IdNationalite</th>
+<th>IdClubTeam</th>
+<th>IdNationalTeam</th>
 
 </tr>
 
@@ -20,9 +25,14 @@
  @foreach($liste as $row)
 <tr>
 <td><?php echo $row->nom; ?></td>
+<td><?php echo $row->prenom; ?></td>
+<td><?php echo $row->dtn; ?></td>
+<td><?php echo $row->taille; ?></td>
 <td><?php echo $row->profil; ?></td>
-<td><?php echo $row->code; ?></td>
-<td><?= \App\Models\Ligue::find($row->idligue)->designation?></td>
+<td><?php echo $row->nbbuts; ?></td>
+<td><?= \App\Models\Nationalite::find($row->idnationalite)->designation?></td>
+<td><?= \App\Models\ClubTeam::find($row->idclubteam)->nom?></td>
+<td><?= \App\Models\NationalTeam::find($row->idnationalteam)->nom?></td>
 <td>  
                         <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal"
                             data-bs-target="#basicModal<?php echo $row->id?>">Modif</button>
@@ -44,18 +54,48 @@
                         <input type="text" class="form-control" placeholder='nom'name='nom' value=<?=$row->nom ?> >
                     </div>
 <div class="col-md-6">
-   <label for="inputEmail2" class="form-label">Profil</label>
+   <label for="inputEmail2" class="form-label">Prenom</label>
+                        <input type="text" class="form-control" placeholder='prenom'name='prenom' value=<?=$row->prenom ?> >
+                    </div>
+<div class="col-md-6">
+   <label for="inputEmail3" class="form-label">Dtn</label>
+                        <input type="date" class="form-control" placeholder='dtn'name='dtn'  value=<?=$row->dtn ?>  >
+                    </div>
+<div class="col-md-6">
+   <label for="inputEmail4" class="form-label">Taille</label>
+                        <input type="number" placeholder='taille'name='taille'  value=<?=$row->taille ?>  class="form-control" >
+                   </div> 
+<div class="col-md-6">
+   <label for="inputEmail5" class="form-label">Profil</label>
                         <input type="text" class="form-control" placeholder='profil'name='profil' value=<?=$row->profil ?> >
                     </div>
 <div class="col-md-6">
-   <label for="inputEmail3" class="form-label">Code</label>
-                        <input type="text" class="form-control" placeholder='code'name='code' value=<?=$row->code ?> >
-                    </div>
+   <label for="inputEmail6" class="form-label">NbButs</label>
+                        <input type="number" placeholder='nbbuts'name='nbbuts'  value=<?=$row->nbbuts ?>  class="form-control" >
+                   </div> 
 <div class="col-md-6">
-   <label for="inputEmail4" class="form-label">IdLigue</label>
-                        <select id="inputState" name='idligue' class="form-select">\n" 
-<?php foreach(\App\Models\Ligue::all() as $data)
+   <label for="inputEmail7" class="form-label">IdNationalite</label>
+                        <select id="inputState" name='idnationalite' class="form-select">\n" 
+<?php foreach(\App\Models\Nationalite::all() as $data)
 {?> <option value='<?php echo $data->id ?>' ><?php echo $data->designation ?></option>
+ 
+
+<?php } ?>
+</select></div>
+<div class="col-md-6">
+   <label for="inputEmail8" class="form-label">IdClubTeam</label>
+                        <select id="inputState" name='idclubteam' class="form-select">\n" 
+<?php foreach(\App\Models\ClubTeam::all() as $data)
+{?> <option value='<?php echo $data->id ?>' ><?php echo $data->nom ?></option>
+ 
+
+<?php } ?>
+</select></div>
+<div class="col-md-6">
+   <label for="inputEmail9" class="form-label">IdNationalTeam</label>
+                        <select id="inputState" name='idnationalteam' class="form-select">\n" 
+<?php foreach(\App\Models\NationalTeam::all() as $data)
+{?> <option value='<?php echo $data->id ?>' ><?php echo $data->nom ?></option>
  
 
 <?php } ?>
