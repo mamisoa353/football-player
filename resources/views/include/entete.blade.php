@@ -12,9 +12,9 @@
                 <nav class="site-navigation position-relative text-right" role="navigation">
                     <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                         <li class="active"><a href="/home" class="nav-link">Acceuil</a></li>
-                        <li><a href="/club" class="nav-link">Clubs</a></li>
-                        <li><a href="#" class="nav-link">Equipes Nationales</a></li>
-                        <li><a href="/player" class="nav-link">Joueurs</a></li>
+                        <li><a href="/clubteam/liste" class="nav-link">Clubs</a></li>
+                        <li><a href="/nationalteam/liste" class="nav-link">Equipes Nationales</a></li>
+                        <li><a href="/joueur/liste" class="nav-link">Joueurs</a></li>
                         {{-- <li><a href="#" class="nav-link">Contact</a></li> --}}
                     </ul>
                 </nav>
