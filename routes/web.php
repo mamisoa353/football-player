@@ -24,3 +24,4 @@ Route::get('/', function () {
 
 
 
+Route::auto('/nationalite',NationaliteController::class);
