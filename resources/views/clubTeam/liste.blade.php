@@ -30,7 +30,7 @@
                     </td>
                     <div class="modal fade" id="basicModal<?php echo $row->id?>">
                         <div class="modal-dialog  modal-md" role="document">
-                            <div class="modal-content">
+                            <div class="modal-content bg-dark">
                                 <div class="modal-header">
                                     <h5 class="modal-title">Modification</h5>
                                 </div>

@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\ClubTeamController;
+use App\Http\Controllers\JoueurController;
+use App\Http\Controllers\LigueController;
 use App\Http\Controllers\NationaliteController;
+use App\Http\Controllers\NationalTeamController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -29,19 +32,7 @@ Route::get('/player', function () {
     return view('player.detail');
 });
 Route::auto('/nationalite', NationaliteController::class);
-Route::auto('/clubteam',ClubTeamController::class);
-Route::auto('/clubteam',ClubTeamController::class);
-Route::auto('/ligue',LigueController::class);
-Route::auto('/ligue',LigueController::class);
-Route::auto('/ligue',LigueController::class);
-Route::auto('/ligue',LigueController::class);
-Route::auto('/ligue',LigueController::class);
-Route::auto('/ligue',LigueController::class);
-Route::auto('/ligue',LigueController::class);
-Route::auto('/ligue',LigueController::class);
-Route::auto('/ligue',LigueController::class);
-Route::auto('/clubteam',ClubTeamController::class);
-Route::auto('/clubteam',ClubTeamController::class);
-Route::auto('/nationalteam',NationalTeamController::class);
-Route::auto('/joueur',JoueurController::class);
-Route::auto('/joueur',JoueurController::class);
+Route::auto('/ligue', LigueController::class);
+Route::auto('/joueur', JoueurController::class);
+Route::auto('/clubteam', ClubTeamController::class);
+Route::auto('/nationalteam', NationalTeamController::class);

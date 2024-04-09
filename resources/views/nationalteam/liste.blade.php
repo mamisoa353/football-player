@@ -14,6 +14,9 @@
                         <th>IdNationalite</th>
 
                     </tr>
+
+
+
                     @foreach ($liste as $row)
                         <tr>
                             <td><?php echo $row->nom; ?></td>
