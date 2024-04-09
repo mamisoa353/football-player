@@ -1,165 +1,228 @@
 @extends('layouts.app')
 @section('content')
     <div class="site-section bg-dark">
+        <div class="container">
+            <div class="row" id="listeClubs">
+                <div class="col-lg-16">
+                    <div class="card-body">
+                        <a href='add'>
+                            <button class="btn btn-success">Ajouter nouveau</button>
+                        </a>
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                            data-bs-target="#Filtre">Filtre</button>
+                        <h3>Liste Joueur</h3>
+                        <div class="table-responsive pt-3">
+                            <table class="table table-striped" border="1">
+                                <tr>
+                                    <th>Profil</th>
+                                    <th>Nom</th>
+                                    <th>Age</th>
+                                    <th>Taille</th>
+                                    <th>NbButs</th>
+                                    {{-- <th>IdNationalite</th> --}}
+                                    <th>Club</th>
+                                    <th>Equipe nationale</th>
+                                    <th>Nombre des parcours</th>
 
-        <div class="card-body"><a href='add'> <button class="btn btn-success">Ajouter nouveau</button></a>
-
-            <h3>Liste Joueur</h3>
-            <div class="table-responsive pt-3">
-                <table class="table table-striped" border="1">
-                    <tr>
-                        <th>Profil</th>
-                        <th>Nom</th>
-                        <th>Age</th>
-                        <th>Taille</th>
-                        <th>NbButs</th>
-                        {{-- <th>IdNationalite</th> --}}
-                        <th>Club</th>
-                        <th>Equipe nationale</th>
-                        <th>Nombre des parcours</th>
-
-                    </tr>
-                    @foreach ($liste as $row)
-                        <tr>
-                            <td>
-                                <img src="{{ asset('/assets/logo/Other/' . $row->profil . '.png') }}"
-                                    class="rounded-circle mr-3" width="50" height="50">
-                            </td>
-                            <td>{{ $row->nom . ' ' . $row->prenom }} </td>
-                            <td>{{ $row->age }} ans</td>
-                            <td>{{ $row->taille }} cm</td>
-                            <td>{{ $row->nbbuts }}</td>
-                            <td>{{ $row->clubteam->nom }}</td>
-                            <td>{{ $row->nationalteam->nom }}</td>
-                            <td>{{ count($row->parcours) }}</td>
-                            <td>
-                                <button type="button" class="btn btn-primary"
-                                    onclick="chargerModalAvecAjax(<?= $row->id ?>)">
-                                    Information
-                                </button>
-                                {{-- <a href="">
+                                </tr>
+                                @foreach ($liste as $row)
+                                    <tr>
+                                        <td>
+                                            <img src="{{ asset('/assets/logo/Other/' . $row->profil . '.png') }}"
+                                                class="rounded-circle mr-3" width="50" height="50">
+                                        </td>
+                                        <td>{{ $row->nom . ' ' . $row->prenom }} </td>
+                                        <td>{{ $row->age }} ans</td>
+                                        <td>{{ $row->taille }} cm</td>
+                                        <td>{{ $row->nbbuts }}</td>
+                                        <td>{{ $row->clubteam->nom }}</td>
+                                        <td>{{ $row->nationalteam->nom }}</td>
+                                        <td>{{ count($row->parcours) }}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary"
+                                                onclick="chargerModalAvecAjax(<?= $row->id ?>)">
+                                                Information
+                                            </button>
+                                            {{-- <a href="">
                                     <i class="bi bi-eye"></i>
                                 </a> --}}
-                            </td>
+                                        </td>
+                                        <td>
+                                            <a href="/joueur/page/{{ $row->id }}">Modif</a>
+                                            {{-- <button redirect='joueur/page/{{ $row->id }}'></button> --}}
+                                        </td>
 
-                            {{-- <td>
-                                <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal"
-                                    data-bs-target="#basicModal<?php echo $row->id; ?>">Modif</button>
+                                        <td>
+                                            <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal"
+                                                data-bs-target="#basicModal<?php echo $row->id; ?>">Modif</button>
 
-                            </td> --}}
-                            <div class="modal fade" id="basicModal<?php echo $row->id; ?>">
-                                <div class="modal-dialog  modal-md" role="document">
-                                    <div class="modal-content bg-dark">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Modification</h5>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form action="action_update" method="GET"class="row g-3">
-                                                <div class="col-md-6">
-                                                    <label for="inputEmail1" class="form-label">Nom</label>
-                                                    <input type="text" class="form-control" placeholder='nom'name='nom'
-                                                        value=<?= $row->nom ?>>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="inputEmail2" class="form-label">Prenom</label>
-                                                    <input type="text" class="form-control"
-                                                        placeholder='prenom'name='prenom' value=<?= $row->prenom ?>>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="inputEmail3" class="form-label">Dtn</label>
-                                                    <input type="date" class="form-control" placeholder='dtn'name='dtn'
-                                                        value=<?= $row->dtn ?>>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="inputEmail4" class="form-label">Taille</label>
-                                                    <input type="number" placeholder='taille'name='taille'
-                                                        value=<?= $row->taille ?> class="form-control">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="inputEmail5" class="form-label">Profil</label>
-                                                    <input type="text" class="form-control"
-                                                        placeholder='profil'name='profil' value=<?= $row->profil ?>>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="inputEmail6" class="form-label">NbButs</label>
-                                                    <input type="number" placeholder='nbbuts'name='nbbuts'
-                                                        value=<?= $row->nbbuts ?> class="form-control">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="inputEmail7" class="form-label">IdNationalite</label>
-                                                    <select id="inputState" name='idnationalite' class="form-select">\n"
-                                                        <?php foreach(\App\Models\Nationalite::all() as $data)
-{?> <option value='<?php echo $data->id; ?>'>
-                                                            <?php echo $data->designation; ?></option>
-
-
-                                                        <?php } ?>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="inputEmail8" class="form-label">IdClubTeam</label>
-                                                    <select id="inputState" name='idclubteam' class="form-select">\n"
-                                                        <?php foreach(\App\Models\ClubTeam::all() as $data)
-{?> <option value='<?php echo $data->id; ?>'>
-                                                            <?php echo $data->nom; ?></option>
+                                        </td>
+                                        <div class="modal fade" id="basicModal<?php echo $row->id; ?>">
+                                            <div class="modal-dialog  modal-md" role="document">
+                                                <div class="modal-content bg-dark">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Modification</h5>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="action_update" method="GET"class="row g-3">
+                                                            <div class="col-md-6">
+                                                                <label for="inputEmail1" class="form-label">Nom</label>
+                                                                <input type="text" class="form-control"
+                                                                    placeholder='nom'name='nom' value=<?= $row->nom ?>>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label for="inputEmail2" class="form-label">Prenom</label>
+                                                                <input type="text" class="form-control"
+                                                                    placeholder='prenom'name='prenom'
+                                                                    value=<?= $row->prenom ?>>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label for="inputEmail3" class="form-label">Dtn</label>
+                                                                <input type="date" class="form-control"
+                                                                    placeholder='dtn'name='dtn' value=<?= $row->dtn ?>>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label for="inputEmail4" class="form-label">Taille</label>
+                                                                <input type="number" placeholder='taille'name='taille'
+                                                                    value=<?= $row->taille ?> class="form-control">
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label for="inputEmail5" class="form-label">Profil</label>
+                                                                <input type="text" class="form-control"
+                                                                    placeholder='profil'name='profil'
+                                                                    value=<?= $row->profil ?>>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label for="inputEmail6" class="form-label">NbButs</label>
+                                                                <input type="number" placeholder='nbbuts'name='nbbuts'
+                                                                    value=<?= $row->nbbuts ?> class="form-control">
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label for="inputEmail7"
+                                                                    class="form-label">IdNationalite</label>
+                                                                <select id="inputState" name='idnationalite'
+                                                                    class="form-select">\n"
+                                                                    <?php foreach(\App\Models\Nationalite::all() as $data)
+                                                    {?> <option value='<?php echo $data->id; ?>'>
+                                                                        <?php echo $data->designation; ?></option>
 
 
-                                                        <?php } ?>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="inputEmail9" class="form-label">IdNationalTeam</label>
-                                                    <select id="inputState" name='idnationalteam' class="form-select">\n"
-                                                        <?php foreach(\App\Models\NationalTeam::all() as $data)
-{?> <option value='<?php echo $data->id; ?>'>
-                                                            <?php echo $data->nom; ?></option>
+                                                                    <?php } ?>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label for="inputEmail8"
+                                                                    class="form-label">IdClubTeam</label>
+                                                                <select id="inputState" name='idclubteam'
+                                                                    class="form-select">\n"
+                                                                    <?php foreach(\App\Models\ClubTeam::all() as $data)
+                                                    {?> <option value='<?php echo $data->id; ?>'>
+                                                                        <?php echo $data->nom; ?></option>
 
 
-                                                        <?php } ?>
-                                                    </select>
+                                                                    <?php } ?>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label for="inputEmail9"
+                                                                    class="form-label">IdNationalTeam</label>
+                                                                <select id="inputState" name='idnationalteam'
+                                                                    class="form-select">\n"
+                                                                    <?php foreach(\App\Models\NationalTeam::all() as $data)
+                                                    {?> <option
+                                                                        value='<?php echo $data->id; ?>'>
+                                                                        <?php echo $data->nom; ?></option>
+
+
+                                                                    <?php } ?>
+                                                                </select>
+                                                            </div>
+                                                            <input type="hidden" class="form-control" name='id'
+                                                                value='<?= $row->id ?>' />
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger light"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Save
+                                                            changes</button>
+                                                    </div>
+                                                    </form>
                                                 </div>
-                                                <input type="hidden" class="form-control" name='id'
-                                                    value='<?= $row->id ?>' />
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger light"
-                                                data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">Save changes</button>
-                                        </div>
-                                        </form>
-                                    </div>
-                                    </td>
-                                    {{-- <td>
+                                                {{-- </td> --}}
+                                                {{-- <td>
                                         <button type="button" class="btn btn-danger mb-2" data-bs-toggle="modal"
                                             data-bs-target="#bbasicModal<?php echo $row->id; ?>">Supprimer</button>
                                     </td> --}}
-                                    <div class="modal fade" id="bbasicModal<?php echo $row->id; ?>">
-                                        <div class="modal-dialog  modal-md" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title">Suppression</h5>
+                                                <div class="modal fade" id="bbasicModal<?php echo $row->id; ?>">
+                                                    <div class="modal-dialog  modal-md" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Suppression</h5>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form action="supprimer" method="GET"class="row g-3">
+                                                                    <p style='font-size:28px'>Confirmation de la
+                                                                        suppression!</p>
+                                                                    <input type="hidden" class="form-control"
+                                                                        name='id' value='<?= $row->id ?>' />
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-primary light"
+                                                                    data-bs-dismiss="modal">Close</button>
+                                                                <button type="submit"
+                                                                    class="btn btn-danger">Supprimer</button>
+                                                            </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="modal-body">
-                                                    <form action="supprimer" method="GET"class="row g-3">
-                                                        <p style='font-size:28px'>Confirmation de la suppression!</p>
-                                                        <input type="hidden" class="form-control" name='id'
-                                                            value='<?= $row->id ?>' />
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-primary light"
-                                                        data-bs-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-danger">Supprimer</button>
-                                                </div>
-                                                </form>
                                             </div>
-                                            </td>
-                        </tr>
-                    @endforeach
-                </table>
-                {{ $liste->links() }}
+                                        </div>
+                                    </tr>
+                                @endforeach
+                            </table>
+                            {{ $liste->links() }}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
+    </div>
+    <div class="modal fade" id="Filtre">
+        <div class="modal-dialog  modal-md" role="document">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title">Filtre</h5>
+                </div>
+                <div class="modal-body">
+                    <form action="/joueur/liste" method="GET"class="row g-3">
+                        <div class="col-md-6">
+                            <label for="inputEmail8" class="form-label">IdClubTeam</label>
+                            <select id="inputState" name='idclubteam' class="form-control">\n"
+                                <option></option>
+                                @foreach ($clubTeam as $row)
+                                    <option value='<?php echo $row->id; ?>'><?php echo $row->nom; ?></option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputEmail9" class="form-label">IdNationalTeam</label>
+                            <select id="inputState" name='idnationalteam' class="form-control">\n"
+                                <option></option>
+                                @foreach ($nationalTeam as $row)
+                                    <option value='<?php echo $row->id; ?>'><?php echo $row->nom; ?></option>
+                                @endforeach
+                            </select>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light light" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Valider</button>
+                </div>
+                </form>
+            </div>
+        </div>
     </div>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
         aria-hidden="true">
@@ -220,7 +283,7 @@
                             <h3>Détails du joueur
                                 <i class="bi bi-pencil-square"></i>
                                 <a href="/joueur/page/1">
-                                 </a>
+                                </a>
                                 </h3>
                         </div>
                         <div class="widget-body mb-3">

@@ -87,8 +87,126 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="table-responsive pt-3">
+                            <table class="table table-striped" border="1">
+                                <tr>
+                                    <th>Profil</th>
+                                </tr>
+
+                                <tr>
+                                    <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal"
+                                        data-bs-target="#basicModal<?php echo $joueur->id; ?>">Modif</button>
+                                </tr>
+
+                                <tr>
+                                    <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal"
+                                        data-bs-target="#Marquer">Marquer des buts</button>
+                                </tr>
+
+                            </table>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="Marquer">
+            <div class="modal-dialog  modal-md" role="document">
+                <div class="modal-content bg-dark">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Marquer des buts </h5>
+                    </div>
+                    <div class="modal-body">
+                        <form action="action_update" method="GET"class="row g-3">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="basicModal<?php echo $joueur->id; ?>">
+            <div class="modal-dialog  modal-md" role="document">
+                <div class="modal-content bg-dark">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modification</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form action="action_update" method="GET"class="row g-3">
+                            <div class="col-md-6">
+                                <label for="inputEmail1" class="form-label">Nom</label>
+                                <input type="text" class="form-control" placeholder='nom'name='nom'
+                                    value=<?= $joueur->nom ?>>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputEmail2" class="form-label">Prenom</label>
+                                <input type="text" class="form-control" placeholder='prenom'name='prenom'
+                                    value=<?= $joueur->prenom ?>>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputEmail3" class="form-label">Dtn</label>
+                                <input type="date" class="form-control" placeholder='dtn'name='dtn'
+                                    value=<?= $joueur->dtn ?>>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputEmail4" class="form-label">Taille</label>
+                                <input type="number" placeholder='taille'name='taille' value=<?= $joueur->taille ?>
+                                    class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputEmail5" class="form-label">Profil</label>
+                                <input type="text" class="form-control" placeholder='profil'name='profil'
+                                    value=<?= $joueur->profil ?>>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputEmail6" class="form-label">NbButs</label>
+                                <input type="number" placeholder='nbbuts'name='nbbuts' value=<?= $joueur->nbbuts ?>
+                                    class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputEmail7" class="form-label">IdNationalite</label>
+                                <select id="inputState" name='idnationalite' class="form-select">\n"
+                                    <?php foreach(\App\Models\Nationalite::all() as $data)
+                                {?>
+                                    <option value='<?php echo $data->id; ?>'>
+                                        <?php echo $data->designation; ?>
+                                    </option>
+                                    <?php }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputEmail8" class="form-label">IdClubTeam</label>
+                                <select id="inputState" name='idclubteam' class="form-select">\n"
+                                    <?php foreach(\App\Models\ClubTeam::all() as $data)
+                                {?> <option value='<?php echo $data->id; ?>'>
+                                        <?php echo $data->nom; ?></option>
+
+
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputEmail9" class="form-label">IdNationalTeam</label>
+                                <select id="inputState" name='idnationalteam' class="form-select">\n"
+                                    <?php foreach(\App\Models\NationalTeam::all() as $data)
+                                {?> <option value='<?php echo $data->id; ?>'>
+                                        <?php echo $data->nom; ?></option>
+
+
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <input type="hidden" class="form-control" name='id' value='<?php echo $joueur->id; ?>' />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                    </form>
+                </div>
+                </td>
+
+
             </div>
         </div>
     @endsection

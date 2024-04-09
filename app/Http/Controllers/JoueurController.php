@@ -13,13 +13,31 @@ class JoueurController extends Controller
 
 
 
-    public function liste()
+    public function liste(Request $request)
     {
+        $all = Joueur::query();
+        if ($request->filled('idclubteam')) {
+            $all->where('idclubteam', '=', $request['idclubteam']);
+        }
+        if ($request->filled('idnationalteam')) {
+            $all->where('idnationalteam', '=', $request['idnationalteam']);
+        }
+        $all = $all->paginate(10);
+        // $all = Joueur::paginate(10);
 
 
-        $all = Joueur::paginate(10);
 
-        return view('joueur.liste', ['liste' => $all]);
+        $l_nationalite = Nationalite::all();
+        $l_clubTeam = ClubTeam::all();
+        $l_nationalTeam = NationalTeam::all();
+
+
+        return view('joueur.liste', [
+            'liste' => $all,
+            'nationalite' => $l_nationalite,
+            'clubTeam' => $l_clubTeam,
+            'nationalTeam' => $l_nationalTeam
+        ]);
     }
 
 
