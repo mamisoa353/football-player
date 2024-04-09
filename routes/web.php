@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClubTeamController;
 use App\Http\Controllers\NationaliteController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -28,3 +29,5 @@ Route::get('/player', function () {
     return view('player.detail');
 });
 Route::auto('/nationalite', NationaliteController::class);
+Route::auto('/clubteam',ClubTeamController::class);
+Route::auto('/clubteam',ClubTeamController::class);
