@@ -47,7 +47,9 @@ CREATE TABLE Parcours(
     DateDebut Date,
     DateFin Date,
     IdClubTeam int,
+    IdNationalTeam int,
     IdJoueur int,
     FOREIGN KEY (IdClubTeam) REFERENCES ClubTeam(id),
+    FOREIGN KEY (IdNationalTeam) REFERENCES NationalTeam(id),
     FOREIGN KEY (IdJoueur) REFERENCES Joueur(id)
 );
