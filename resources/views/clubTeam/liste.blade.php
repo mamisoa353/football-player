@@ -132,8 +132,8 @@
                                     </tr>
                                 @endforeach
                             </table>
-                            {{ $liste->links() }}
                         </div>
+                        {{ $liste->links() }}
                     </div>
                 </div>
             </div>

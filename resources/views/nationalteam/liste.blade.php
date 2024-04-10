@@ -33,7 +33,9 @@
                                         <td><?php echo $row->nom; ?></td>
                                         <td><?php echo $row->profil; ?></td>
                                         <td><?php echo $row->code; ?></td>
-                                        <td><?= \App\Models\Nationalite::find($row->idnationalite)->designation ?></td>
+                                        <td>
+                                            {{ $row->nationalite->designation }}
+                                            {{-- <?= \App\Models\Nationalite::find($row->idnationalite)->designation ?></td> --}}
                                         <td>
                                             <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal"
                                                 data-bs-target="#basicModal<?php echo $row->id; ?>">Modifier</button>

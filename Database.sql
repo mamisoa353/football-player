@@ -6,13 +6,13 @@ CREATE TABLE Nationalite(
 CREATE TABLE Ligue(
     Id serial PRIMARY KEY,
     Designation VARCHAR,
-    IdNationalite int references Nationalite(IdNationalite)
+    IdNationalite int references Nationalite(id)
 );
 INSERT INTO Ligue(Designation, IdNationalite)
 values('Premier Ligue', 3),
-    ('LaLiga', 4),
-    ('Ligue 1', 2),
-    ('MLS', 5);
+    ('LaLiga', 2),
+    ('Ligue 1', 1),
+    ('MLS', 4);
 CREATE TABLE ClubTeam(
     Id serial PRIMARY KEY,
     Nom VARCHAR unique,
