@@ -47,14 +47,12 @@
                                     <i class="bi bi-eye"></i>
                                 </a> --}}
                                         </td>
-                                        <td>
-                                            <a href="/joueur/page/{{ $row->id }}">Modif</a>
-                                            {{-- <button redirect='joueur/page/{{ $row->id }}'></button> --}}
-                                        </td>
+
 
                                         <td>
-                                            <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal"
-                                                data-bs-target="#basicModal<?php echo $row->id; ?>">Modif</button>
+                                            <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal"
+                                                data-bs-target="#basicModal<?php echo $row->id; ?>"><i
+                                                    class="bi bi-pencil-square"></i></button>
 
                                         </td>
                                         <div class="modal fade" id="basicModal<?php echo $row->id; ?>">
@@ -248,8 +246,11 @@
                 <div class="modal-body">
                     <!-- Contenu chargé via Ajax sera inséré ici -->
                 </div>
+                <a href="/parcours/add" type="button" class="btn btn-dark">Tranférer</a>
+                <button type="button" class="btn btn-primary " data-bs-dismiss="modal">Close</button>
             </div>
         </div>
+
     </div>
 @endsection
 
